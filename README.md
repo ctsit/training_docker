@@ -1,5 +1,5 @@
 # Docker Training
-<hr>
+
 In this repository you will find instructions that guide you through the first steps to setup a Docker environment on a Mac laptop. From there you will be able to setup your first "hello world" container. The intent is to get you familiar with the commands used to start a container, check its status and stop the container. 
 
 1) Create a Docker ID
