@@ -16,4 +16,4 @@ These instructions will guide you through the first steps to setup a Docker envi
 - Once you complete the 6 steps of this training please git add, commit and push your files you created from the tutorial to the forked training_docker repository
 - [https://docs.docker.com/get-started/](https://docs.docker.com/get-started "Get Started with Docker")
 
-## You have now completed the first online exercise for Docker training. You will now be taken back to the Jump on Board website to begin the next module. Please return to the <a href="https://ctsit.github.io/J.O.B.-Jump-On-Board#dockermodule2" target="_blank">Docker Training Course Website</a> to continue to the next section.
+## You have now completed the first online exercise for Docker training. You will now be taken back to the Jump on Board website to begin the next module. Please return to the <a href="https://ctsit.github.io/J.O.B.-Jump-On-Board#dockermodule3" target="_blank">Docker Training Course Website</a> to continue to the next section.
