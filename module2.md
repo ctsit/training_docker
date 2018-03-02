@@ -1,4 +1,4 @@
-# Docker Training Module 1
+# Docker Training Module 2
 
 These instructions will guide you through the first steps to setup a Docker environment on a Mac. From there you will be able to setup your first "hello world" container. The intent is to get you familiar with the commands used to start a container, check its status and stop the container. Please begin by forking this repository to your GitHub account and then cloning the repository to your Mac. Then follow these steps:
 
