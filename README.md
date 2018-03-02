@@ -10,8 +10,4 @@ In this repository you will find instructions that guide you through CTS=IT's tr
            \______ o           __/
              \    \         __/
               \____\_______/
-                term.echo('          |          |                     ');
-                term.echo('       __ |  __   __ | _  __   _           ');
-                term.echo('      /  \\\| /  \\\ /   |/  / _\\\ |      ');
-                term.echo('      \\\__/| \\\__/ \\\__ |\\\_ \\\__  |  ');
-                term.echo('                                           ');
+
