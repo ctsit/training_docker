@@ -11,8 +11,20 @@ These instructions will guide you through the first steps to setup a Docker envi
 - Click "Get Docker for Mac (Stable)" link and follow the instructions on the website and in the app
 - Provide your Docker ID for the app to use while it runs in the background
 
-### Exercise 1 Manual
-The ```man``` command is used to display the manual for any Linux command. If you forget how to use a command in Linux you can simply type ```man``` and then the command you want to read about. For example you can type ```man ls``` to display the manual that describes the function and options for the list directory content command. You will use the man command in the further exercises of this module.
+3) Open a terminal in a new Mac desktop that is full screen and let's have fun with Docker commands
+
+### Exercise 1 Run a Container
+1. In your terminal type the command ```docker search debian | more```
+	* note that both ubuntu and debian are listed at the top and that there is an [OK] under the official column. This means these images are the offically blessed images by the ubuntu and debian community.
+2. Let's choose the debian image for our first exercise and type the command ```docker run -ti debian:stretch bash```
+	* note how quickly you built a container and it is running. This action pulled an image from the public Docker registry and ran it.
+3. Now let's check the Linux release of the container by typing ```cat /etc/*-release```, the version should say 9 (stretch)
+4. Now type ```exit``` to exit the container or press Ctrl D on your keyboard. Either option works.
+5. Let's clean up the container we just created by listing it and removing it, type the command ```docker container ps -a```
+	* note that ```docker container ps``` just shows running containers and the -a switch says to show all containers running or not
+6. Now remove the Docker container by typing ```docker rm "container_id"``` where container_id is the unique identifying number that is given to the Debian container you just ran.
+7. Now type the command ```docker run -ti --name voldemort debian:stretch``` then run ```docker container ps -a``` then remove voldemort from your computer by typing ```docker rm voldemort```
+	* note wasn't that easier than having to type the container identifier?
 
 ### Exercise 2 Present Working Directory
 In a terminal window practice the present working directory command which is called pwd.
