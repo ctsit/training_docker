@@ -65,6 +65,18 @@ Change directory or ```cd build1``` into the build1 folder of this repository. C
 	* note the --rm command automatically removes the container once it has completed. This saves the step of running ```docker rm spell``` after the container is done.
 
 #### Exercise 4a Creating containers with another Dockerfile
+We will now build a second image with another Dockerfile. Note that a file called dockerfile will not work and only the work Dockerfile with a capital D will work to build an image.
+
+Change directory up one level or ```cd ..``` and then change directory again into the build2 folder or ```cd build2```. Cat or open the Dockerfile and see the contents. This time we are pulling an existing nginx image from the Docker public repository. Nginx is a webserver much like Apache.
+
+1. Let's build the image from the Dockerfile by typing ```docker build -t helloworld .``` Note the build process and review the output.
+2. Now run the helloworld image as a container by typing ```docker run -ti -p 8080:80 --name web1 helloworld```
+	* note that I added the -p option which specifies that to the external world port 8080 is open and maps to the internal port of 80. Also note that we called this container web1 and built it form the helloworld image we created in step 1.
+3. Let's go see the results of this container running by opening a browser and typing in the address ```localhost:8080```. You should see the statement Hello World. 
+4. Return to the terminal window and Ctrl C to exit the container and type ```docker rm web1``` or keep it around if you like.
+
+#### Exercise 4c Create your own Dockerfile
+Now you will create your own Dockerfile. In the root of the training_docker repository create a directory called build3 and inside of that folder create a Dockerfile. You can get as elaborate or simple as you like with this file. At the conclusion of your Dockerfile creation git add and commit this folder and Dockerfile to your forked repository for review later.
 
 
 
