@@ -11,6 +11,19 @@ These instructions will guide you through the first steps to setup a Docker envi
 - Click "Get Docker for Mac (Stable)" link and follow the instructions on the website and in the app
 - Provide your Docker ID for the app to use while it runs in the background
 
+### Exercise 1 Manual
+The ```man``` command is used to display the manual for any Linux command. If you forget how to use a command in Linux you can simply type ```man``` and then the command you want to read about. For example you can type ```man ls``` to display the manual that describes the function and options for the list directory content command. You will use the man command in the further exercises of this module.
+
+### Exercise 2 Present Working Directory
+In a terminal window practice the present working directory command which is called pwd.
+
+1. In your terminal type the command pwd
+	* note that the terminal displays the current directory that you are working in
+2. Document your current directory by typing the command ```pwd > pwd.txt```
+3. Change directory to the root of your file system by typing ```cd /``` and then type ```pwd```
+4. Change directory to the users directory by typing ```cd /users``` and then type ```pwd```
+5. Type the command ```cd $repodir``` to return to your exercise directory
+
 3) Next visit the Docker site and complete Parts 1 - 6 of their getting started with Docker
 - Allow yourself 60 minutes to complete this tutorial
 - Once you complete the 6 steps of this training please git add, commit and push your files you created from the tutorial to the forked training_docker repository
