@@ -23,22 +23,25 @@ These instructions will guide you through the first steps to setup a Docker envi
 5. Let's clean up the container we just created by listing it and removing it, type the command ```docker container ps -a```
 	* note that ```docker container ps``` just shows running containers and the -a switch says to show all containers running or not
 6. Now remove the Docker container by typing ```docker rm "container_id"``` where container_id is the unique identifying number that is given to the Debian container you just ran.
-7. Now type the command ```docker run -ti --name voldemort debian:stretch``` then run ```docker container ps -a``` then remove voldemort from your computer by typing ```docker rm voldemort```
+	* note containers have their own unique ids and images have their own set of unique ids
+7. Now type the command ```docker run --name voldemort debian:stretch``` then run ```docker container ps -a``` then remove voldemort from your computer by typing ```docker rm voldemort```
 	* note wasn't that easier than having to type the container identifier?
 
-### Exercise 2 Present Working Directory
-In a terminal window practice the present working directory command which is called pwd.
+### Exercise 2 Working with Commit
+In this exercise you will become familiar with the docker commit command which allows you to create a new image from an existing container. This is useful if you have made changes to a container and want to make a new image from it for future use. 
 
-1. In your terminal type the command pwd
-	* note that the terminal displays the current directory that you are working in
-2. Document your current directory by typing the command ```pwd > pwd.txt```
-3. Change directory to the root of your file system by typing ```cd /``` and then type ```pwd```
-4. Change directory to the users directory by typing ```cd /users``` and then type ```pwd```
-5. Type the command ```cd $repodir``` to return to your exercise directory
+1. In your terminal type the command ```docker run -ti --name ronald debian:stretch bash```
+2. Now create a file in this new container by typing ```touch ron_was_here.txt``` and type ```ls```
+	* note your file is at the root of your container
+3. Now exit your container and type ```docker container ps -a``` to note that the ronald container is there but stopped
+4. Now type ```docker start ronald``` which starts up the container
+5. Now type ```docker attach ronald``` which puts you back in the bash shell of the container, type ```ls``` to make sure the ron_was_here.txt file is still there then type ```exit```.
+6. Let's make a new image from the ronald container by typing ```docker commit ronald harry``` and then type ```docker commit ronald harry:potter```
+7. Type ```docker images``` and note that you now see two images one name harry with a tag of latest and another named harry with a tag of potter
+8. Type ```docker run -ti harry:potter``` and type ```ls``` to note that the ron_was_here.txt file is in the new container
 
-3) Next visit the Docker site and complete Parts 1 - 6 of their getting started with Docker
-- Allow yourself 60 minutes to complete this tutorial
-- Once you complete the 6 steps of this training please git add, commit and push your files you created from the tutorial to the forked training_docker repository
-- [https://docs.docker.com/get-started/](https://docs.docker.com/get-started "Get Started with Docker")
+Although my examples are trivial the idea here is to see how you take a container, add new configurations to it and make and image from it to be used in other containers.
+
+
 
 ## You have now completed the first online exercise for Docker training. You will now be taken back to the Jump on Board website to begin the next module. Please return to the <a href="https://ctsit.github.io/J.O.B.-Jump-On-Board#dockermodule3" target="_blank">Docker Training Course Website</a> to continue to the next section.
