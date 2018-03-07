@@ -39,8 +39,25 @@ In this exercise you will become familiar with the docker commit command which a
 6. Let's make a new image from the ronald container by typing ```docker commit ronald harry``` and then type ```docker commit ronald harry:potter```
 7. Type ```docker images``` and note that you now see two images one name harry with a tag of latest and another named harry with a tag of potter
 8. Type ```docker run -ti harry:potter``` and type ```ls``` to note that the ron_was_here.txt file is in the new container
+9. Type exit
+10. Type ```docker rm harry:potter```
+11. Type ```docker rm harry```
 
-Although my examples are trivial the idea here is to see how you take a container, add new configurations to it and make and image from it to be used in other containers.
+Although this example is simple the idea here is to see how you take a container, add new configurations to it and make and image from it to be used in other containers.
+
+### Exercise 3 Working with commands
+In this exercise you will become familiar with running a container that runs a command. 
+
+1. In your terminal type the command ```docker run -ti --name kirk debian apt-get update``` and note that apt-get update ran
+2. Type ```docker container ps -a``` and notice the output, you see the kirk container is stopped and that its command was apt-get update
+3. Type ```docker rm kirk```
+
+The entire point of this quick exercise is to know that docker containers run a single process and when that is done it stops the container afterward.
+
+### Exercise 4 Creating containers with a Dockerfile
+At this point we have been running containers in a very rudimentary fashion just to get familiar with basic commands. Now we move into building an image with a Dockerfile.You will use the Dockerfile that is already included in this repository as the starting point.
+
+1. 
 
 
 
