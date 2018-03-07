@@ -55,9 +55,16 @@ In this exercise you will become familiar with running a container that runs a c
 The entire point of this quick exercise is to know that docker containers run a single process and when that is done it stops the container afterward.
 
 ### Exercise 4 Creating containers with a Dockerfile
-At this point we have been running containers in a very rudimentary fashion just to get familiar with basic commands. Now we move into building an image with a Dockerfile.You will use the Dockerfile that is already included in this repository as the starting point.
+At this point we have been running containers in a very rudimentary fashion just to get familiar with basic commands. Now we move into building an image with a Dockerfile. You will use the Dockerfile that is already included in this repository under the directory build1 as the starting point.
 
-1. 
+Change directory or ```cd build1``` into the build1 folder of this repository. Cat or open the Dockerfile to see the contents. Note the structure of the file. The FROM line is always first and says what image to build from, in this case debian:stretch. The first RUN line performs and update and installs curl and pv and the second RUN line runs an echo statement. The CMD line will run the command once the image is run as a container. 
+
+1. Let's build the image by typing the command ```docker build -t spell .```
+	* Note the steps of the build process
+2. Now run the image as a container by typing the command ```docker run --rm spell```
+	* note the --rm command automatically removes the container once it has completed. This saves the step of running ```docker rm spell``` after the container is done.
+
+#### Exercise 4a Creating containers with another Dockerfile
 
 
 
