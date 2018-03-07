@@ -75,7 +75,7 @@ Change directory up one level or ```cd ..``` and then change directory again int
 3. Let's go see the results of this container running by opening a browser and typing in the address ```localhost:8080```. You should see the statement Hello World. 
 4. Return to the terminal window and Ctrl C to exit the container and type ```docker rm web1``` or keep it around if you like.
 
-#### Exercise 4c Create your own Dockerfile
+#### Exercise 4b Create your own Dockerfile
 Now you will create your own Dockerfile. In the root of the training_docker repository create a directory called build3 and inside of that folder create a Dockerfile. You can get as elaborate or simple as you like with this file. At the conclusion of your Dockerfile creation git add and commit this folder and Dockerfile to your forked repository for review later.
 
 
