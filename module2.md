@@ -83,6 +83,7 @@ Now that we have created images and containeres let's take a moment to practice 
 
 1. Start a container from an image we have already created but this time mount a volume in the container by typing ```docker run -ti -v /Users/<yourusername>/Desktop:/shared-folder debian:stretch bash```
 	* note that the /Users/<yourusername>/Desktop is the desktop of your Mac and the /shared-folder is the name of the folder in the container that can access your Desktop.
-2. Touch a file on your desktop from within the container by typing ```touch Hermione_was_here.txt```. Take a moment to look on your desktop to see if the file showed up. Copy the file to your training_docker repository and git add and git commit the file to your forked repository. 
+2. Touch a file on your desktop from within the container by typing ```touch Hermione_was_here.txt```. 
+3. Now exit the container and take a moment to look on your desktop to see if the file showed up. Note that the file survived the container exist and persisted on your desktop. Copy the file to your training_docker repository and git add and git commit the file to your forked repository. 
 
 ## You have now completed the first online exercise for Docker training. You will now be taken back to the Jump on Board website to begin the next module. Please return to the <a href="https://ctsit.github.io/J.O.B.-Jump-On-Board#dockermodule3" target="_blank">Docker Training Course Website</a> to continue to the next section.
