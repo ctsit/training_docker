@@ -43,7 +43,7 @@ In this exercise you will become familiar with the docker commit command which a
 10. Type ```docker rm harry:potter```
 11. Type ```docker rm harry```
 
-Although this example is simple the idea here is to see how you take a container, add new configurations to it and make and image from it to be used in other containers.
+Although this example is simple the idea here is to see how you take a container, add new configurations to it and make and image from it to be used in other containers. However, as useful as docker commit is ultimately you will most likely use it rarely and instead will favor the Dockerfile process to build your images. Using docker commit is typically a one time process where you have to create the first container to make the next image. A Dockerfile is a more consistent way to make repeatable images or new images with changes to the Dockerfile options.
 
 ### Exercise 3 Working with commands
 In this exercise you will become familiar with running a container that runs a command. 
@@ -64,31 +64,49 @@ Change directory or ```cd build1``` into the build1 folder of this repository. C
 2. Now run the image as a container by typing the command ```docker run --rm spell```
 	* note the --rm command automatically removes the container once it has completed. This saves the step of running ```docker rm spell``` after the container is done.
 
-#### Exercise 4a Creating containers with another Dockerfile
-We will now build a second image with another Dockerfile. Note that a file called dockerfile will not work and only the work Dockerfile with a capital D will work to build an image.
+#### Exercise 4a Creating more containers with another Dockerfile
+We will now build a second image with another Dockerfile. Remember that the captial D in the word Dockerfile is a required.
 
 Change directory up one level or ```cd ..``` and then change directory again into the build2 folder or ```cd build2```. Cat or open the Dockerfile and see the contents. This time we are pulling an existing nginx image from the Docker public repository. Nginx is a webserver much like Apache.
 
 1. Let's build the image from the Dockerfile by typing ```docker build -t helloworld .``` Note the build process and review the output.
 2. Now run the helloworld image as a container by typing ```docker run -ti -p 8080:80 --name web1 helloworld```
-	* note that I added the -p option which specifies that to the external world port 8080 is open and maps to the internal port of 80. Also note that we called this container web1 and built it form the helloworld image we created in step 1.
+	* note that I added the -p option which specifies to the external world port 8080 is open and maps to the container's port of 80.  Also note that we called this container web1 and built it form the helloworld image we created in step 1.
 3. Let's go see the results of this container running by opening a browser and typing in the address ```localhost:8080```. You should see the statement Hello World. 
-4. Return to the terminal window and Ctrl C to exit the container and type ```docker rm web1``` or keep it around if you like.
+4. Return to the terminal window and Ctrl D to exit the container and type ```docker rm web1``` or keep it around if you like.
 
 #### Exercise 4b Create your own Dockerfile
-Now you will create your own Dockerfile. In the root of the training_docker repository create a directory called build3 and inside of that folder create a Dockerfile. You can get as elaborate or simple as you like with this file. At the conclusion of your Dockerfile creation git add and commit this folder and Dockerfile to your forked repository for review later.
+Now you will create your own Dockerfile. In the root of the training_docker repository create a directory called build3 and inside of that folder create a Dockerfile. You can get as elaborate or simple as you like with this file. At the conclusion of your Dockerfile creation git add and commit the build3 folder and Dockerfile to your forked repository for review later by the instructor.
 
-### Exercise 5 Working with Volumes
+### Exercise 5 Working with Persistent Volumes
 Now that we have created images and containeres let's take a moment to practice using persistent volumes in our containers. In this first exercise you are setting up a container that creates a database that is shared with the host and the container.
 
 1. Start a container from an image we have already created but this time mount a volume in the container by typing ```docker run -ti -v /Users/<yourusername>/Desktop:/shared-folder debian:stretch bash```
 	* note that the /Users/<yourusername>/Desktop is the desktop of your Mac and the /shared-folder is the name of the folder in the container that can access your Desktop.
 2. Touch a file on your desktop from within the container by typing ```touch sqlite.db```. 
-3. Now exit the container and take a moment to look on your desktop to see if the file showed up. Note that the file survived the container exit and persisted on your desktop. Copy the file to your training_docker repository and git add and git commit the file to your forked repository. 
+3. Now exit the container by pressing Ctrl D and take a moment to look on your desktop to see if the file showed up. Note that the file survived the container exit and persisted on your desktop. Copy the file to your training_docker repository and git add and git commit the file to your forked repository. 
 
-#### Exercise 5a Working with Volumes some more
-In this exercise you are setting up a volume that will share data amoung two containers.
+#### Exercise 5a Working with Ephemeral Volumes
+In this exercise you are setting up a volume that will share data amoung two containers using an ephermeral volume.
+
+1. Start a container from an image we have already created and setup a shared volume in the container by typing ```docker run -ti --name db01 -v /shared-data debian:stretch bash```
+2. Now in the commandline of the new container add data to the shared-data folder by typing ```cd shared-data``` and then type ```touch tmp```.
+3. We need to keep the db01 container running so let's leave it running and open a new terminal tab by pressing Command T on your keyboard.
+3. In this new terminal window create another container that will access the db file on the container we just setup, type ```docker run -ti --name web01 --volumes-from db01 debian:stretch bash```.
+4. Now you are in the web01 container bash shell type ```ls``` and you will see the shared-data folder available on the web01 container. 
+5. Type ```cd shared-data``` and ```ls``` and you will see the tmp file that you created in the db01 container.
+6. Let's add another file to this folder by typing ```touch cache```.
+7. Return to the previous tab that had the db01 container running and type ```exit```.
+8. Now return to the terminal tab that was running the web01 container and type ```ls``` and you will see that even though the db01 container is gone the web01 container still has the two files (tmp & cache) that were created.
+9. Let's start a third container for this exercise and mount the same shared-data volume by typing ```docker run -ti --name db02 --volumes-from web01 debian:stretch bash```.
+10. Type ```ls``` and you will see the shared-data folder in the new db02 container. CD into the folder and you will see the tmp and cache files as well.
+11. Now exit both the web01 and db02 containers
+12. "Poof" now the data is gone and this demonstrates the very temporary nature of ephemeral volumes. Ephemeral volumes can be good for temp files or caches that can easily go away with out worry of retreival again.
+
+#### Exercise 5b Working with volumes in a Dockerfile
+In this exercise we will setup a Dockerfile that mounts a volume as part of the image configuration and then run that image to see the mounted volume in the container.
 
 1. 
+
 
 ## You have now completed the first online exercise for Docker training. You will now be taken back to the Jump on Board website to begin the next module. Please return to the <a href="https://ctsit.github.io/J.O.B.-Jump-On-Board#dockermodule3" target="_blank">Docker Training Course Website</a> to continue to the next section.
