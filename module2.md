@@ -104,9 +104,13 @@ In this exercise you are setting up a volume that will share data amoung two con
 12. "Poof" now the data is gone and this demonstrates the very temporary nature of ephemeral volumes. Ephemeral volumes can be good for temp files or caches that can easily go away with out worry of retreival again.
 
 #### Exercise 5b Working with volumes in a Dockerfile
-In this exercise we will setup a Dockerfile that mounts a volume as part of the image configuration and then run that image to see the mounted volume in the container.
+Although Dockerfile supports the VOLUME directive you do not typically make an image with a specific volume in mind. The VOLUME can be host specific and since containers are susposed to be deployable without any dependencies like local host volumes you instead create the container and specifiy the local volumes for your environment in the docker run -v hostdata:containerdata step. So therefore, this step in your training is simply to reinforce the concept that volumes are host and location specific and containers can be built to manipulate, process and transform local volumes where ever they go. 
 
-1. 
+### Exercise 6 Working with Networks
 
 
-## You have now completed the first online exercise for Docker training. You will now be taken back to the Jump on Board website to begin the next module. Please return to the <a href="https://ctsit.github.io/J.O.B.-Jump-On-Board#dockermodule3" target="_blank">Docker Training Course Website</a> to continue to the next section.
+
+
+
+
+## You have now completed the online exercises for Docker training. You will now be taken back to the Jump on Board website to begin the next module. Please return to the <a href="https://ctsit.github.io/J.O.B.-Jump-On-Board#dockermodule3" target="_blank">Docker Training Course Website</a> to continue to the next module.
