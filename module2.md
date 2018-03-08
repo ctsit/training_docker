@@ -79,11 +79,16 @@ Change directory up one level or ```cd ..``` and then change directory again int
 Now you will create your own Dockerfile. In the root of the training_docker repository create a directory called build3 and inside of that folder create a Dockerfile. You can get as elaborate or simple as you like with this file. At the conclusion of your Dockerfile creation git add and commit this folder and Dockerfile to your forked repository for review later.
 
 ### Exercise 5 Working with Volumes
-Now that we have created images and containeres let's take a moment to practice using persistent volumes in our containers. 
+Now that we have created images and containeres let's take a moment to practice using persistent volumes in our containers. In this first exercise you are setting up a container that creates a database that is shared with the host and the container.
 
 1. Start a container from an image we have already created but this time mount a volume in the container by typing ```docker run -ti -v /Users/<yourusername>/Desktop:/shared-folder debian:stretch bash```
 	* note that the /Users/<yourusername>/Desktop is the desktop of your Mac and the /shared-folder is the name of the folder in the container that can access your Desktop.
-2. Touch a file on your desktop from within the container by typing ```touch Hermione_was_here.txt```. 
-3. Now exit the container and take a moment to look on your desktop to see if the file showed up. Note that the file survived the container exist and persisted on your desktop. Copy the file to your training_docker repository and git add and git commit the file to your forked repository. 
+2. Touch a file on your desktop from within the container by typing ```touch sqlite.db```. 
+3. Now exit the container and take a moment to look on your desktop to see if the file showed up. Note that the file survived the container exit and persisted on your desktop. Copy the file to your training_docker repository and git add and git commit the file to your forked repository. 
+
+#### Exercise 5a Working with Volumes some more
+In this exercise you are setting up a volume that will share data amoung two containers.
+
+1. 
 
 ## You have now completed the first online exercise for Docker training. You will now be taken back to the Jump on Board website to begin the next module. Please return to the <a href="https://ctsit.github.io/J.O.B.-Jump-On-Board#dockermodule3" target="_blank">Docker Training Course Website</a> to continue to the next section.
