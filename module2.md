@@ -45,7 +45,7 @@ In this exercise you will become familiar with the docker commit command which a
 
 Although this example is simple the idea here is to see how you take a container, add new configurations to it and make and image from it to be used in other containers. However, as useful as docker commit is ultimately you will most likely use it rarely and instead will favor the Dockerfile process to build your images. Using docker commit is typically a one time process where you have to create the first container to make the next image. A Dockerfile is a more consistent way to make repeatable images or new images with changes to the Dockerfile options.
 
-### Exercise 3 Working with commands
+### Exercise 3 Working with Commands in a Container
 In this exercise you will become familiar with running a container that runs a command. 
 
 1. In your terminal type the command ```docker run -ti --name kirk debian apt-get update``` and note that apt-get update ran
@@ -104,13 +104,20 @@ In this exercise you are setting up a volume that will share data amoung two con
 12. "Poof" now the data is gone and this demonstrates the very temporary nature of ephemeral volumes. Ephemeral volumes can be good for temp files or caches that can easily go away with out worry of retreival again.
 
 #### Exercise 5b Working with volumes in a Dockerfile
-Although Dockerfile supports the VOLUME directive you do not typically make an image with a specific volume in mind. The VOLUME can be host specific and since containers are susposed to be deployable without any dependencies like local host volumes you instead create the container and specifiy the local volumes for your environment in the docker run -v hostdata:containerdata step. So therefore, this step in your training is simply to reinforce the concept that volumes are host and location specific and containers can be built to manipulate, process and transform local volumes where ever they go. 
+Although Dockerfile supports the VOLUME directive you do not typically make an image with a specific volume in the Dockerfile. The VOLUME can be host specific and since containers are susposed to be deployable without any dependencies like local host volumes you instead create the container and specifiy the local volumes for your environment in the docker run -v hostdata:containerdata step. So therefore, this step in your training is simply to reinforce the concept that volumes are host and location specific and containers can be built to manipulate, process and transform local volumes where ever they go. 
 
 ### Exercise 6 Working with Networks
+In this exercise we will setup two containers that will talk over a bridged network that we create for them to use. 
 
-
-
-
-
+1. Let's first setup the network we are going to use by typing ```docker network create partytime```
+2. Now let's create a web server and attach it to the partytime network. CD or change directory into the build5 directory and then CD again into the webcontainer1 folder. Now type ```docker build -t nginx:web1 .```
+3. Now run the new image in a container and connect it to the network partytime by typing ```docker run -ti --net=partytime --name webserver01 nginx:web1 bash```
+4. In the webserver01 container type ```service nginx start```
+5. Now press Command T on your keyboard to open another terminal tab, type ```cd ..``` to jump up one level in your repository and then type ```cd curlcontainer2```.
+6. Build the curl container by typing ```docker build -t curl:image .```
+7. Run the curl container by typing ```docker run -ti --net=partytime --name curlcontainer curl:image bash```
+8. Run the ping command by typing ```ping webserver01``` and notice that Docker has already added the webserver01 to the hosts file so that this ping will resolve the webserver01 container. Press Ctrl C to quit the ping command.
+8. Now type the command ```curl -s http://webserver01/wineglas.vt | pv -L3000 -q```
+9. Cheers!
 
 ## You have now completed the online exercises for Docker training. You will now be taken back to the Jump on Board website to begin the next module. Please return to the <a href="https://ctsit.github.io/J.O.B.-Jump-On-Board#dockermodule3" target="_blank">Docker Training Course Website</a> to continue to the next module.
