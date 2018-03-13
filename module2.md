@@ -38,9 +38,9 @@ In this exercise you will become familiar with the docker commit command which a
 5. Now type ```docker attach ronald``` which puts you back in the bash shell of the container, type ```ls``` to make sure the ron_was_here.txt file is still there then type ```exit```.
 6. Let's make a new image from the ronald container by typing ```docker commit ronald harry``` and then type ```docker commit ronald harry:potter```
 7. Type ```docker images``` and note that you now see two images one name harry with a tag of latest and another named harry with a tag of potter
-8. Type ```docker run -ti harry:potter``` and type ```ls``` to note that the ron_was_here.txt file is in the new container
+8. Type ```docker run -ti --name harry harry:potter``` and type ```ls``` to note that the ron_was_here.txt file is in the new container
 9. Type exit
-10. Type ```docker rm harry:potter```
+10. Type ```docker rmi harry:potter```
 11. Type ```docker rm harry```
 
 Although this example is simple the idea here is to see how you take a container, add new configurations to it and make and image from it to be used in other containers. However, as useful as docker commit is ultimately you will most likely use it rarely and instead will favor the Dockerfile process to build your images. Using docker commit is typically a one time process where you have to create the first container to make the next image. A Dockerfile is a more consistent way to make repeatable images or new images with changes to the Dockerfile options.
