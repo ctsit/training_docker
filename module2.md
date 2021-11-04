@@ -120,4 +120,25 @@ In this exercise we will setup two containers that will talk over a bridged netw
 8. Now type the command ```curl -s http://webserver01/wineglas.vt | pv -L3000 -q```
 9. Cheers!
 
+
+### Exercise 7 Working with Docker Compose
+
+A docker compose file is used to run a multi-container docker application such as a front end server and a back end server. Docker compose can automatically create both containers and network them together. A compose file also holds configuration variables that can be changed depending on the environment or version of the application that is run in the containers. There are more advanced features and uses for docker compose found on the docker docs website https://docs.docker.com/compose/ 
+
+For now, we are going to cover the basics of docker compose and set up a basic multi-container application.
+
+1. Go to the build6 directory and take a look at the docker compose file and the docker files inside of mariadb folder and apache folder. For a docker compose to work this is the minimum information needed in the docker file.
+
+2. Now navigate to the directory where the docker-compose file is and run the ```command docker compose up -d``` This should run both the apache server for a static webpage and a mariadb database.
+
+3. Go to localhost:8080 to see a webpage running in docker!
+
+4. Now find the index.html file in apache/app/index.html and change something about the webpage.
+
+5. Run ```docker compose down``` to stop and delete the containers and delete the image ```build6_apache``` (if you need a hint look at exercise 2).
+
+6. Run ```docker compose up -d``` docker will recompile the apache image and use the old mariadb image. Refresh the page and check out your changes!
+
+7. Don't forget to clean up the containers and images when you are done!
+
 ## You have now completed the online exercises for Docker training. You will now be taken back to the Jump on Board website to begin the next module. Please return to the <a href="https://ctsit.github.io/J.O.B.-Jump-On-Board#dockermodule3" target="_blank">Docker Training Course Website</a> to continue to the next module.
