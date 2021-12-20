@@ -1,0 +1,24 @@
+version: '1'
+services:
+  mariadb:
+    environment:
+      - MYSQL_USER=Username
+      - MYSQL_PASSWORD=Password
+      - MYSQL_ROOT_PASSWORD=rootPassword
+      - MYSQL_ROOT_HOST=%
+      - TZ=America/New_York
+    build:
+      context: ./mariadb
+    volumes:
+      - maria-data:/var/lib/mysql
+    ports:
+      - 3306:3306
+
+  apache:
+    build:
+      context: ./apache
+    ports:
+      - 8080:8080
+
+volumes:
+  maria-data:

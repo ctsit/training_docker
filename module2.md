@@ -120,4 +120,57 @@ In this exercise we will setup two containers that will talk over a bridged netw
 8. Now type the command ```curl -s http://webserver01/wineglas.vt | pv -L3000 -q```
 9. Cheers!
 
+
+### Exercise 7 Working with Docker Compose
+
+A docker compose file is used to run a multi-container docker application such as a front end server and a back end server. Docker compose can automatically create both containers and network them together. A compose file also holds configuration variables that can be changed depending on the environment or version of the application that is run in the containers. There are more advanced features and uses for docker compose found on the docker docs website https://docs.docker.com/compose/ 
+
+For now, we are going to cover the basics of docker compose and set up a basic multi-container application.
+
+1. Go to the build6 directory and take a look at the docker compose file and the docker files inside of mariadb folder and apache folder. For a docker compose to work this is the minimum information needed in the docker file.
+
+2. Now navigate to the directory where the docker-compose file is and run the ```command docker compose up -d``` This should run both the apache server for a static webpage and a mariadb database.
+
+3. Go to localhost:8080 to see a webpage running in docker!
+
+4. Now find the index.html file in apache/app/index.html and change something about the webpage.
+
+5. Run ```docker compose down``` to stop and delete the containers and delete the image ```build6_apache``` (if you need a hint look at exercise 2).
+
+6. Run ```docker compose up -d``` docker will recompile the apache image and use the old mariadb image. Refresh the page and check out your changes!
+
+7. Don't forget to clean up the containers and images when you are done!
+
+### Exercise 8 Cron Job and Docker
+
+Cron is a job scheduler on unix like operating systems. These jobs run on a desired schedule depending on the configurations in the file. For more information on cron visit [THIS](https://en.wikipedia.org/wiki/Cron) website for an overview. In this exercise we will cover a simple cron job to spin up a container and have it run a command then exit. This is ideal for running weekly reports or ingests. 
+
+
+1. Run “crontab -e” If it is your first time adding a cron job then it will prompt you with an empty file to edit in vim. 
+2. For help creating the command a common comment is used to help remember the formatting.
+```
+# ┌───────────── minute (0 - 59)
+# │ ┌───────────── hour (0 - 23)
+# │ │ ┌───────────── day of the month (1 - 31)
+# │ │ │ ┌───────────── month (1 - 12)
+# │ │ │ │ ┌───────────── day of the week (0 - 6) (Sunday to Saturday;
+# │ │ │ │ │                                   7 is also Sunday on some systems)
+# │ │ │ │ │
+# │ │ │ │ │
+# * * * * * <command to execute>
+```
+3. Paste the comment into the file to help make the cron job.
+4. For the our first cron job we will run a simple echo command to ensure that it is working. 
+5. Post the command ```docker run -ti debian:stretch bash ```
+
+This will create a docker image and run it on the time that was set in the cron job. Wait till the time that was specified on the docker and check to see if the container is running through the ```docker ps -a``` command.
+
+### Exercise 9 Docker Publish.
+
+EXCERCISE 4a already does this it just needs a little more information. Publishing a port allows for things outside of the container to contact the service running in the container. A container will usually have a port but to access the container a port from the localhost must be connected to the docker container. Think of publishing as creating a road directing the local machine port to the docker container. The port number for the docker container and computer do not have to be the same. 
+
+For example, MongoDB has a default port of 80. To publish the docker port you would run the command ```docker -p host-port:docker-port image```. If you wanted to publish mangoDB port 80 to port 8080 on the localhost then the command would be ```docker -p 8080:80 MongoDB``` Go ahead and practice with the commands below.
+
+In the format of docker -p <host-port:docker-port> image. (When building manually). Check to see if you changed the port by using the ```docker ps -a``` command.
+
 ## You have now completed the online exercises for Docker training. You will now be taken back to the Jump on Board website to begin the next module. Please return to the <a href="https://ctsit.github.io/J.O.B.-Jump-On-Board#dockermodule3" target="_blank">Docker Training Course Website</a> to continue to the next module.
