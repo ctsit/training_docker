@@ -141,4 +141,36 @@ For now, we are going to cover the basics of docker compose and set up a basic m
 
 7. Don't forget to clean up the containers and images when you are done!
 
+### Exercise 8 Cron Job and Docker
+
+Cron is a job scheduler on unix like operating systems. These jobs run on a desired schedule depending on the configurations in the file. For more information on cron visit [THIS](https://en.wikipedia.org/wiki/Cron) website for an overview. In this exercise we will cover a simple cron job to spin up a container and have it run a command then exit. This is ideal for running weekly reports or ingests. 
+
+
+1. Run “crontab -e” If it is your first time adding a cron job then it will prompt you with an empty file to edit in vim. 
+2. For help creating the command a common comment is used to help remember the formatting.
+```
+# ┌───────────── minute (0 - 59)
+# │ ┌───────────── hour (0 - 23)
+# │ │ ┌───────────── day of the month (1 - 31)
+# │ │ │ ┌───────────── month (1 - 12)
+# │ │ │ │ ┌───────────── day of the week (0 - 6) (Sunday to Saturday;
+# │ │ │ │ │                                   7 is also Sunday on some systems)
+# │ │ │ │ │
+# │ │ │ │ │
+# * * * * * <command to execute>
+```
+3. Paste the comment into the file to help make the cron job.
+4. For the our first cron job we will run a simple echo command to ensure that it is working. 
+5. Post the command ```docker run -ti debian:stretch bash ```
+
+This will create a docker image and run it on the time that was set in the cron job. Wait till the time that was specified on the docker and check to see if the container is running through the ```docker ps -a``` command.
+
+### Exercise 9 Docker Publish.
+
+EXCERCISE 4a already does this it just needs a little more information. Publishing a port allows for things outside of the container to contact the service running in the container. A container will usually have a port but to access the container a port from the localhost must be connected to the docker container. Think of publishing as creating a road directing the local machine port to the docker container. The port number for the docker container and computer do not have to be the same. 
+
+For example, MongoDB has a default port of 80. To publish the docker port you would run the command ```docker -p host-port:docker-port image```. If you wanted to publish mangoDB port 80 to port 8080 on the localhost then the command would be ```docker -p 8080:80 MongoDB``` Go ahead and practice with the commands below.
+
+In the format of docker -p <host-port:docker-port> image. (When building manually). Check to see if you changed the port by using the ```docker ps -a``` command.
+
 ## You have now completed the online exercises for Docker training. You will now be taken back to the Jump on Board website to begin the next module. Please return to the <a href="https://ctsit.github.io/J.O.B.-Jump-On-Board#dockermodule3" target="_blank">Docker Training Course Website</a> to continue to the next module.
